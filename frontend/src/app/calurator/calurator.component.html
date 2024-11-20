@@ -11,13 +11,13 @@
       @for (expense of expenseArray.controls; track expense; let idx = $index) {
         <div class="contain-input" [formGroupName]="idx">
           <mat-form-field class="contain-expense">
-            <mat-label>Expenses</mat-label>
-            <input matInput formControlName="expense" />
+            <mat-label>expenses</mat-label>
+            <input mask="a" matInput formControlName="expense" />
           </mat-form-field>
 
           <mat-form-field class="contain-expense">
-            <mat-label>value</mat-label>
-            <input matInput formControlName="value" />
+            <mat-label>cost</mat-label>
+            <input mask="0" formControlName="value" />
           </mat-form-field>
           @if (idx > 0) {
             <button
@@ -38,7 +38,6 @@
           <mat-icon>add</mat-icon>
         </button>
       </div>
-
     </ng-container>
     @if (this.isResult === true) {
       <mat-form-field class="contain-expense">

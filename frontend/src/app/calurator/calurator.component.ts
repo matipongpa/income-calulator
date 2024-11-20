@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-calurator',
@@ -22,8 +23,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     MatButtonModule,
     MatIconModule,
+    NgxMaskDirective,
     ReactiveFormsModule,
   ],
+  providers: [provideNgxMask()],
   templateUrl: './calurator.component.html',
   styleUrl: './calurator.component.scss',
 })
@@ -80,13 +83,18 @@ export class CaluratorComponent implements OnInit {
   }
 
   onClickCalcurate() {
-    const income = this.form.get("income")?.value
-    this.form.get("result")?.setValue(income)
-     if (!this.form.valid) {
-      return
-     }
-    this.expenseArray.controls.forEach(expense => {
-      this.form.get("result")?.setValue(this.form.get("result")?.value - (expense as FormGroup).get("value")?.value)
+    const income = this.form.get('income')?.value;
+    this.form.get('result')?.setValue(income);
+    if (!this.form.valid) {
+      return;
+    }
+    this.expenseArray.controls.forEach((expense) => {
+      this.form
+        .get('result')
+        ?.setValue(
+          this.form.get('result')?.value -
+            (expense as FormGroup).get('value')?.value,
+        );
     });
     this.isResult = true;
   }

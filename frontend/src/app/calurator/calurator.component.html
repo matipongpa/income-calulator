@@ -1,0 +1,50 @@
+<div class="content">
+  <h1>Income Calcurator</h1>
+  <div class="content" [formGroup]="form">
+    <div class="contain-input">
+      <mat-form-field class="example-form-field">
+        <mat-label>Income</mat-label>
+        <input matInput formControlName="income" />
+      </mat-form-field>
+    </div>
+    <ng-container formArrayName="expense">
+      @for (expense of expenseArray.controls; track expense; let idx = $index) {
+        <div class="contain-input" [formGroupName]="idx">
+          <mat-form-field class="contain-expense">
+            <mat-label>Expenses</mat-label>
+            <input matInput formControlName="expense" />
+          </mat-form-field>
+
+          <mat-form-field class="contain-expense">
+            <mat-label>value</mat-label>
+            <input matInput formControlName="value" />
+          </mat-form-field>
+          @if (idx > 0) {
+            <button
+              mat-icon-button
+              class="left-auto button"
+              (click)="deleteLesson(idx)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          }
+        </div>
+      }
+      <div class="fx-row">
+        <button mat-icon-button (click)="onClickCalcurate()">
+          <mat-icon>calculate</mat-icon>
+        </button>
+        <button mat-icon-button class="left-auto" (click)="onClickPlus()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+    </ng-container>
+    @if (this.isResult === true) {
+      <mat-form-field class="contain-expense">
+        <mat-label>Result</mat-label>
+        <input matInput formControlName="result" />
+      </mat-form-field>
+    }
+  </div>
+</div>

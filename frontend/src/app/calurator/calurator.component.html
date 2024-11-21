@@ -4,7 +4,7 @@
     <div class="contain-input">
       <mat-form-field class="example-form-field">
         <mat-label>Income</mat-label>
-        <input matInput formControlName="income" />
+        <input matInput mask="0*" formControlName="income" />
       </mat-form-field>
     </div>
     <ng-container formArrayName="expense">
@@ -12,12 +12,12 @@
         <div class="contain-input" [formGroupName]="idx">
           <mat-form-field class="contain-expense">
             <mat-label>expenses</mat-label>
-            <input mask="a" matInput formControlName="expense" />
+            <input matInput mask="A*" formControlName="expense" />
           </mat-form-field>
 
           <mat-form-field class="contain-expense">
             <mat-label>cost</mat-label>
-            <input mask="0" formControlName="value" />
+            <input matInput mask="0*" formControlName="value" />
           </mat-form-field>
           @if (idx > 0) {
             <button

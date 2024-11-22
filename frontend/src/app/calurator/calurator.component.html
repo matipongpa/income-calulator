@@ -7,19 +7,41 @@
         <input matInput mask="0*" formControlName="income" />
       </mat-form-field>
     </div>
+    <div class="fx-row">
+      <button mat-icon-button (click)="onClickCalcurate()">
+        <mat-icon>calculate</mat-icon>
+      </button>
+      <button mat-icon-button class="left-auto" (click)="onClickPlus()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
     <ng-container formArrayName="expense">
       @for (expense of expenseArray.controls; track expense; let idx = $index) {
-        <div class="contain-input" [formGroupName]="idx">
-          <mat-form-field class="contain-expense">
-            <mat-label>expenses</mat-label>
-            <input matInput mask="A*" formControlName="expense" />
-          </mat-form-field>
+        @if (idx == 0) {
+          <div class="dynamic-form-row" [formGroupName]="idx">
+            <mat-form-field class="contain-expense">
+              <mat-label>expenses</mat-label>
+              <input matInput mask="A*" formControlName="expense" />
+            </mat-form-field>
 
-          <mat-form-field class="contain-expense">
-            <mat-label>cost</mat-label>
-            <input matInput mask="0*" formControlName="value" />
-          </mat-form-field>
-          @if (idx > 0) {
+            <mat-form-field class="contain-expense">
+              <mat-label>cost</mat-label>
+              <input matInput mask="0*" formControlName="value" />
+            </mat-form-field>
+          </div>
+        } @else {
+          <div class="dynamic-form-row-with-btn" [formGroupName]="idx">
+            <mat-form-field class="contain-expense">
+              <mat-label>expenses</mat-label>
+              <input matInput mask="A*" formControlName="expense" />
+            </mat-form-field>
+
+            <mat-form-field class="contain-expense">
+              <mat-label>cost</mat-label>
+              <input matInput mask="0*" formControlName="value" />
+            </mat-form-field>
+
             <button
               mat-icon-button
               class="left-auto button"
@@ -27,17 +49,9 @@
             >
               <mat-icon>delete</mat-icon>
             </button>
-          }
-        </div>
+          </div>
+        }
       }
-      <div class="fx-row">
-        <button mat-icon-button (click)="onClickCalcurate()">
-          <mat-icon>calculate</mat-icon>
-        </button>
-        <button mat-icon-button class="left-auto" (click)="onClickPlus()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
     </ng-container>
     @if (this.isResult === true) {
       <mat-form-field class="contain-expense">
@@ -46,4 +60,15 @@
       </mat-form-field>
     }
   </div>
+  <canvas
+    baseChart
+    [datasets]="pieChartDataset"
+    [labels]="pieChartLabels"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [legend]="pieChartLegend"
+    [type]="'pie'"
+  >
+  </canvas>
+
 </div>

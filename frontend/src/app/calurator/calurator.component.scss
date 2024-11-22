@@ -30,3 +30,31 @@
 .button {
   margin-bottom: 3px;
 }
+
+.dynamic-form-container {
+  display: flex;
+  flex-direction: column; /* Aligns rows vertically */
+  gap: 10px; /* Adds spacing between rows */
+}
+
+.dynamic-form-row {
+  display: flex;
+  align-items: center; /* Align items (inputs and button) vertically */
+  gap: 10px; /* Adds spacing between inputs and button */
+}
+
+.dynamic-form-row-with-btn {
+  display: flex;
+  align-items: center; /* Align items (inputs and button) vertically */
+  gap: 10px; /* Adds spacing between inputs and button */
+  margin-left: 50px;
+}
+
+input {
+  flex: 1; /* Ensures inputs take equal width */
+}
+
+button {
+  flex-shrink: 0; /* Prevents the button from shrinking */
+  height: 40px; /* Matches the height of the inputs */
+}
